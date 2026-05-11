@@ -1,6 +1,6 @@
 # ☁️ AWS — Projetos de Infraestrutura e Serviços
 
-Projetos focados em arquitetura de infraestrutura AWS, cobrindo redes, containers, balanceamento de carga, CDN e outros serviços core.
+Projetos focados em arquitetura de infraestrutura AWS, cobrindo redes, containers, balanceamento de carga, CDN e outros serviços core (por enquanto...).
 
 ---
 

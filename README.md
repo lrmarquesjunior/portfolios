@@ -1,6 +1,6 @@
 # ☁️ Portfólio AWS — Soluções em Nuvem
 
-Bem-vindo ao meu portfólio de projetos AWS. Aqui documento arquiteturas, integrações e soluções que desenvolvo ao longo da minha jornada rumo à certificação "AWS Solutions Architect Associate" e na minha atuação em projetos com "Amazon Connect".
+Bem-vindo ao meu portfólio de projetos AWS. Aqui documento arquiteturas, integrações e soluções que desenvolvo ao longo da minha jornada rumo à certificação "AWS Solutions Architect Associate" e na minha atuação em projetos reais.
 
 ---
 
@@ -34,4 +34,31 @@ Bem-vindo ao meu portfólio de projetos AWS. Aqui documento arquiteturas, integr
 
 ---
 
-> 💡 Este portfólio está em constante evolução. Novos projetos são adicionados conforme avanço nos estudos e o envolvimento nos projetos reais.
+---
+
+## 📌 Sobre a Documentação dos Projetos
+
+Os projetos iniciais foram documentados com **prints de tela** para comprovar o funcionamento e mostrar o fluxo completo, pois sou muito visual. Alguns projetos vão continuar assim, pois é o formato mais direto para demonstrar que funciona mesmo.
+
+Vai notar que números de conta, nomes de buckets e ARNs aparecem em alguns prints. Vou seguir assim pois logo após validar o funcionamento, faço backup e destruo o ambiente por conta de custos — minha conta já saiu do free tier faz tempo, e recriar conta nova toda hora, cartão de crédito, etc... é demorado demais.
+
+Além dos prints, vou incluir diagramas do Draw.io, pois como disse acime, sou muito visual e esse formato me ajuda tanto no aprendizado quanto na documentação. Onde fizer sentido, vou explicar também o porquê de alguns itens da arquitetura.
+
+A ideia é evoluir gradualmente, sem me prender a um padrão rígido desde o início. A prioridade é publicar e aprender, um projeto de cada vez. 
+Um passo de cada vez...
+
+---
+
+## 🔐 Próximos Passos
+
+Vou tentar fazer com que os projetos futuros "tenham cara" de ambiente de produção:
+
+- **Segurança** — IAM, Secrets, KMS, etc...
+- **Autenticação** — Cognito e federação com Identity Providers (AD/SAML), tema que já aplico no Connect corporativo 
+- **Resiliência** — redundância multi-AZ, o Connect já é multi-AZ por ser SaaS, mas falo dos demais serviços
+- **IaC** — Terraform (preciso me aprofundar aqui com certa urgência)
+- **CI/CD** — no ambiente corporativo já utilizamos GitLab → ECR → AWS CodePipeline → ECS, minha ideia para os próximos
+
+---
+
+> 💡 Este portfólio está em constante evolução. Novos projetos são adicionados conforme avanço nos estudos e o envolvimento em projetos reais.
