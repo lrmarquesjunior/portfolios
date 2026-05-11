@@ -1,0 +1,302 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "1e037b5b-0865-44cb-8587-2ff5ee8f220f",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -414.4,
+      "y": -45.6
+    },
+    "ActionMetadata": {
+      "1e037b5b-0865-44cb-8587-2ff5ee8f220f": {
+        "position": {
+          "x": -321.6,
+          "y": 84.8
+        },
+        "children": [
+          "aa792e69-5712-4575-a6b8-863b9d507dfc"
+        ],
+        "parameters": {
+          "TextToSpeechVoice": {
+            "languageCode": "pt-BR"
+          }
+        },
+        "overrideConsoleVoice": false,
+        "fragments": {
+          "SetContactData": "aa792e69-5712-4575-a6b8-863b9d507dfc"
+        },
+        "overrideLanguageAttribute": true
+      },
+      "aa792e69-5712-4575-a6b8-863b9d507dfc": {
+        "position": {
+          "x": -321.6,
+          "y": 84.8
+        },
+        "dynamicParams": []
+      },
+      "265f005d-107e-4aae-a498-8388d5d627cf": {
+        "position": {
+          "x": 572,
+          "y": 13.6
+        }
+      },
+      "13b40b4b-b8be-43f5-99b4-e1d231859e39": {
+        "position": {
+          "x": 201.6,
+          "y": 259.2
+        }
+      },
+      "bab07b9b-0143-472f-b65f-27ddc19e04fa": {
+        "position": {
+          "x": 219.2,
+          "y": -232
+        },
+        "parameters": {
+          "ContactFlowId": {
+            "displayName": "1.1 - Atendimento Suporte Técnico"
+          }
+        },
+        "ContactFlow": {
+          "text": "1.1 - Atendimento Suporte Técnico"
+        }
+      },
+      "2e438d3d-433f-4434-8086-ad64286e30f6": {
+        "position": {
+          "x": 260.8,
+          "y": -69.6
+        },
+        "parameters": {
+          "ContactFlowId": {
+            "displayName": "1.2 - Atendimento Transacoes"
+          }
+        },
+        "ContactFlow": {
+          "text": "1.2 - Atendimento Transacoes"
+        }
+      },
+      "4c44d37a-417e-4069-bed5-22a87c5dcf59": {
+        "position": {
+          "x": 264.8,
+          "y": 80.8
+        },
+        "parameters": {
+          "ContactFlowId": {
+            "displayName": "1.3 - Atendimento Outros Problemas"
+          }
+        },
+        "ContactFlow": {
+          "text": "1.3 - Atendimento Outros Problemas"
+        }
+      },
+      "f0344143-ff69-49ac-ac0f-e418bcfae729": {
+        "position": {
+          "x": -49.6,
+          "y": -33.6
+        },
+        "parameters": {
+          "LexV2Bot": {
+            "AliasArn": {
+              "displayName": "versao_final_1",
+              "useLexBotDropdown": true,
+              "lexV2BotName": "lex-poc"
+            }
+          }
+        },
+        "useLexBotDropdown": true,
+        "lexV2BotName": "lex-poc",
+        "lexV2BotAliasName": "versao_final_1",
+        "conditionMetadata": [
+          {
+            "id": "fe62cdd9-2606-4ea9-ae1e-c3d38afa6dfa",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "alarme"
+          },
+          {
+            "id": "07105c8d-75e5-4eda-b1ae-02f2a5782b17",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "saque"
+          },
+          {
+            "id": "69631ef6-6526-4315-bfbf-a9b9ffebb4bb",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "outros"
+          }
+        ]
+      }
+    },
+    "Annotations": [],
+    "name": "1 - Atendimento Main",
+    "description": "",
+    "type": "contactFlow",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "TextToSpeechVoice": "Vitoria"
+      },
+      "Identifier": "1e037b5b-0865-44cb-8587-2ff5ee8f220f",
+      "Type": "UpdateContactTextToSpeechVoice",
+      "Transitions": {
+        "NextAction": "aa792e69-5712-4575-a6b8-863b9d507dfc",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LanguageCode": "pt-BR"
+      },
+      "Identifier": "aa792e69-5712-4575-a6b8-863b9d507dfc",
+      "Type": "UpdateContactData",
+      "Transitions": {
+        "NextAction": "f0344143-ff69-49ac-ac0f-e418bcfae729",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "265f005d-107e-4aae-a498-8388d5d627cf",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Ocorreu erro ao obter Info dos clientes no Lex."
+      },
+      "Identifier": "13b40b4b-b8be-43f5-99b4-e1d231859e39",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ContactFlowId": "arn:aws:connect:us-east-1:387290985356:instance/49188406-0f34-4576-a2ba-7d3e182df40e/contact-flow/16b12a27-9d28-41fa-88ff-9aefb5427557"
+      },
+      "Identifier": "bab07b9b-0143-472f-b65f-27ddc19e04fa",
+      "Type": "TransferToFlow",
+      "Transitions": {
+        "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ContactFlowId": "arn:aws:connect:us-east-1:387290985356:instance/49188406-0f34-4576-a2ba-7d3e182df40e/contact-flow/be40236a-8ad9-4694-a3ff-34387e31d5fb"
+      },
+      "Identifier": "2e438d3d-433f-4434-8086-ad64286e30f6",
+      "Type": "TransferToFlow",
+      "Transitions": {
+        "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ContactFlowId": "arn:aws:connect:us-east-1:387290985356:instance/49188406-0f34-4576-a2ba-7d3e182df40e/contact-flow/4b2de871-7dcb-4413-86a3-79ca9d65ef23"
+      },
+      "Identifier": "4c44d37a-417e-4069-bed5-22a87c5dcf59",
+      "Type": "TransferToFlow",
+      "Transitions": {
+        "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+        "Errors": [
+          {
+            "NextAction": "265f005d-107e-4aae-a498-8388d5d627cf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "Bem vindo ao nosso atendimento. Em que posso lhe ajudar?",
+        "LexV2Bot": {
+          "AliasArn": "arn:aws:lex:us-east-1:387290985356:bot-alias/AT55H4864X/4546UIWFKM"
+        }
+      },
+      "Identifier": "f0344143-ff69-49ac-ac0f-e418bcfae729",
+      "Type": "ConnectParticipantWithLexBot",
+      "Transitions": {
+        "NextAction": "13b40b4b-b8be-43f5-99b4-e1d231859e39",
+        "Conditions": [
+          {
+            "NextAction": "bab07b9b-0143-472f-b65f-27ddc19e04fa",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "alarme"
+              ]
+            }
+          },
+          {
+            "NextAction": "2e438d3d-433f-4434-8086-ad64286e30f6",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "saque"
+              ]
+            }
+          },
+          {
+            "NextAction": "4c44d37a-417e-4069-bed5-22a87c5dcf59",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "outros"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "4c44d37a-417e-4069-bed5-22a87c5dcf59",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "13b40b4b-b8be-43f5-99b4-e1d231859e39",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}
