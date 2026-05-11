@@ -1,0 +1,9 @@
+{
+  "name": "integracao-api-externa",
+  "version": "1.0.0",
+  "description": "Lambda para integração do Amazon Connect com API externa via Secrets Manager",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "3.600.0"
+  }
+}

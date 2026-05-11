@@ -1,0 +1,121 @@
+# ============================================================
+# Kiro IDE
+# ============================================================
+# Arquivos de configuração interna do Kiro (não são relevantes
+# para quem visualiza o portfólio)
+.kiro/**/.config.kiro
+.kiro/settings/
+.kiro/hooks/
+
+# Specs do Kiro: manter requirements.md e design.md (documentação útil)
+# mas ignorar arquivos de estado interno
+**/.kiro/specs/**/.config.kiro
+
+# ============================================================
+# Node.js / Lambda
+# ============================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+dist/
+build/
+.env
+.env.local
+.env.*.local
+
+# ============================================================
+# AWS / Terraform / CDK
+# ============================================================
+# Credenciais e configurações locais da AWS — NUNCA subir
+.aws/
+*.pem
+*.key
+credentials
+
+# CDK
+cdk.out/
+cdk.context.json
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+
+# SAM
+.aws-sam/
+samconfig.toml
+
+# ============================================================
+# Segredos e variáveis de ambiente
+# ============================================================
+.env
+.env.*
+*.secret
+secrets.json
+secrets.yaml
+secrets.yml
+
+# ============================================================
+# Sistema Operacional
+# ============================================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# ============================================================
+# IDEs e Editores
+# ============================================================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ============================================================
+# Logs e temporários
+# ============================================================
+*.log
+*.tmp
+*.temp
+*.cache
+.cache/
+logs/
+
+# ============================================================
+# Arquivos de build e compilação
+# ============================================================
+*.class
+*.jar
+target/
+out/
+*.zip
+*.tar.gz
+
+# ============================================================
+# Python (caso use Lambda em Python)
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
