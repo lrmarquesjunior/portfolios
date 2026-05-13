@@ -30,7 +30,7 @@ Um passo de cada vez...
 
 ### Amazon Connect
 - [01 - Connect Básico + Lex](./Amazon-Connect/01-connect-basico-lex/)
-- [02-connect-email-route53-ses-sns-sqs](./Amazon-Connect/02-02-connect-email-route53-ses-sns-sqs/)
+- [02-connect-email-route53-ses-sns-sqs](./Amazon-Connect/02-connect-email-route53-ses-sns-sqs/)
 - Próximos Projetos - Em Andamento
 
 ---
