@@ -80,7 +80,6 @@ E se precisar escalar para o Nível 2, nada de passar um e-mail "meia boca" ou a
 ├── contact-flows/
 │   └── 03-connect-email-ses-custprofile-ccp.json
 └── docs/
-    ├── descricao.md
     └── images/
         └── 03-email-ses-custprofile-ccp.jpg
 ```
