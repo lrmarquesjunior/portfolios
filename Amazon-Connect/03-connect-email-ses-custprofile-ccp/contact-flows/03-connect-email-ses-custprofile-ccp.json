@@ -1,0 +1,332 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "93e9d2ff-7ce4-4e4e-ba52-d637f4fe11ab",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 543.2,
+      "y": 4.8
+    },
+    "ActionMetadata": {
+      "a43a907a-dc12-4646-b479-2e4a58a6d690": {
+        "position": {
+          "x": 2214.4,
+          "y": 55.2
+        }
+      },
+      "93e9d2ff-7ce4-4e4e-ba52-d637f4fe11ab": {
+        "position": {
+          "x": 670.4,
+          "y": 4
+        }
+      },
+      "f3868f89-6da4-45bd-a97a-4a5a012681c1": {
+        "position": {
+          "x": 1183.2,
+          "y": 307.2
+        },
+        "parameters": {
+          "ProfileRequestData": {
+            "EmailAddress": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": {
+          "EmailAddress": true
+        },
+        "customerProfilesAction": "CreateCustomerProfile"
+      },
+      "5441f0d4-e416-4048-964f-2c2b0ae0c147": {
+        "position": {
+          "x": 1472.8,
+          "y": 292.8
+        },
+        "parameters": {
+          "Attributes": {
+            "udClienteProfileId": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "udClienteProfileId"
+        ]
+      },
+      "98482614-b891-4c7d-9988-af11e87392da": {
+        "position": {
+          "x": 1738.4,
+          "y": 308.8
+        },
+        "parameters": {
+          "ProfileRequestData": {
+            "ProfileId": {
+              "useDynamic": true
+            },
+            "ContactId": {
+              "useDynamic": true
+            }
+          }
+        }
+      },
+      "6c73bc54-fd20-494b-babe-c7212f97fb2e": {
+        "position": {
+          "x": 1976.8,
+          "y": -12.8
+        },
+        "parameters": {
+          "QueueId": {
+            "displayName": "Email_Teste"
+          }
+        },
+        "queue": {
+          "text": "Email_Teste"
+        }
+      },
+      "f54f0e8d-1b46-4127-b2be-075f251fa08d": {
+        "position": {
+          "x": 2223.2,
+          "y": 278.4
+        }
+      },
+      "daddf63a-82ca-401f-90d1-80349fc3832b": {
+        "position": {
+          "x": 942.4,
+          "y": 71.2
+        },
+        "parameters": {
+          "ProfileRequestData": {
+            "IdentifierName": {
+              "displayName": "Email"
+            },
+            "IdentifierValue": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": {
+          "IdentifierName": true,
+          "IdentifierValue": true
+        },
+        "customerProfilesAction": "GetCustomerProfile"
+      },
+      "5bd45d5b-8865-4554-aaf0-179982df62fd": {
+        "position": {
+          "x": 1441.6,
+          "y": 0.8
+        },
+        "parameters": {
+          "ProfileRequestData": {
+            "ProfileId": {
+              "useDynamic": true
+            },
+            "ContactId": {
+              "useDynamic": true
+            }
+          }
+        }
+      },
+      "045cc988-1dea-4d7f-9111-cc4827fbb6b5": {
+        "position": {
+          "x": 1182.4,
+          "y": -10.4
+        },
+        "parameters": {
+          "Attributes": {
+            "udClienteProfileId": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "udClienteProfileId"
+        ]
+      }
+    },
+    "Annotations": [],
+    "name": "03-connect-email-ses-custprofile-ccp",
+    "description": "",
+    "type": "contactFlow",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "a43a907a-dc12-4646-b479-2e4a58a6d690",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "93e9d2ff-7ce4-4e4e-ba52-d637f4fe11ab",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "daddf63a-82ca-401f-90d1-80349fc3832b"
+      }
+    },
+    {
+      "Parameters": {
+        "ProfileRequestData": {
+          "EmailAddress": "$.CustomerEndpoint.Address"
+        },
+        "ProfileResponseData": []
+      },
+      "Identifier": "f3868f89-6da4-45bd-a97a-4a5a012681c1",
+      "Type": "CreateCustomerProfile",
+      "Transitions": {
+        "NextAction": "5441f0d4-e416-4048-964f-2c2b0ae0c147",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "udClienteProfileId": "$.Customer.ProfileId"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "5441f0d4-e416-4048-964f-2c2b0ae0c147",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "98482614-b891-4c7d-9988-af11e87392da",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ProfileRequestData": {
+          "ProfileId": "$.Attributes.udClienteProfileId",
+          "ContactId": "$.ContactId"
+        }
+      },
+      "Identifier": "98482614-b891-4c7d-9988-af11e87392da",
+      "Type": "AssociateContactToCustomerProfile",
+      "Transitions": {
+        "NextAction": "6c73bc54-fd20-494b-babe-c7212f97fb2e",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:387290985356:instance/49188406-0f34-4576-a2ba-7d3e182df40e/queue/4f9b5a90-5dd5-464b-9b68-4523e30bf083"
+      },
+      "Identifier": "6c73bc54-fd20-494b-babe-c7212f97fb2e",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "a43a907a-dc12-4646-b479-2e4a58a6d690",
+        "Errors": [
+          {
+            "NextAction": "a43a907a-dc12-4646-b479-2e4a58a6d690",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "ProfileRequestData": {
+          "IdentifierName": "_email",
+          "IdentifierValue": "$.CustomerEndpoint.Address"
+        },
+        "ProfileResponseData": [
+          "EmailAddress",
+          "FirstName",
+          "LastName",
+          "PhoneNumber"
+        ]
+      },
+      "Identifier": "daddf63a-82ca-401f-90d1-80349fc3832b",
+      "Type": "GetCustomerProfile",
+      "Transitions": {
+        "NextAction": "045cc988-1dea-4d7f-9111-cc4827fbb6b5",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          },
+          {
+            "NextAction": "5bd45d5b-8865-4554-aaf0-179982df62fd",
+            "ErrorType": "MultipleFoundError"
+          },
+          {
+            "NextAction": "f3868f89-6da4-45bd-a97a-4a5a012681c1",
+            "ErrorType": "NoneFoundError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ProfileRequestData": {
+          "ProfileId": "$.Attributes.udClienteProfileId",
+          "ContactId": "$.ContactId"
+        }
+      },
+      "Identifier": "5bd45d5b-8865-4554-aaf0-179982df62fd",
+      "Type": "AssociateContactToCustomerProfile",
+      "Transitions": {
+        "NextAction": "6c73bc54-fd20-494b-babe-c7212f97fb2e",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "udClienteProfileId": "$.Customer.ProfileId"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "045cc988-1dea-4d7f-9111-cc4827fbb6b5",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "5bd45d5b-8865-4554-aaf0-179982df62fd",
+        "Errors": [
+          {
+            "NextAction": "f54f0e8d-1b46-4127-b2be-075f251fa08d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}

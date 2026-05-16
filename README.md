@@ -6,13 +6,13 @@ Bem-vindo ao meu portfólio de projetos AWS. Aqui documento arquiteturas, integr
 
 ## 📌 Sobre a Documentação dos Projetos
 
-Os projetos iniciais foram documentados com **prints de tela** para comprovar o funcionamento e mostrar o fluxo completo, pois sou muito visual. Alguns projetos vão continuar assim, pois é o formato mais direto para demonstrar que funciona mesmo.
+Os projetos iniciais foram documentados com **prints de tela** para comprovar o funcionamento e mostrar o fluxo completo, pois sou muito visual. Alguns projetos vão continuar assim, pois é o formato mais direto para demonstrar que funciona mesmo. Alguns vão com markdown e alguns com print mesmo...
 
 Vai notar que números de conta, nomes de buckets e ARNs aparecem em alguns prints. Vou seguir assim pois logo após validar o funcionamento, faço backup e destruo o ambiente por conta de custos — minha conta já saiu do free tier faz tempo, e recriar conta nova toda hora, cartão de crédito, etc... é demorado demais.
 
 Além dos prints, vou incluir diagramas do Draw.io, pois como disse acime, sou muito visual e esse formato me ajuda tanto no aprendizado quanto na documentação. Onde fizer sentido, vou explicar também os porquês...
 
-A ideia é evoluir gradualmente, sem me prender a um padrão rígido desde o início. A prioridade é publicar e aprender, um projeto de cada vez. 
+A ideia é evoluir gradualmente, sem me prender a um padrão. A prioridade é publicar e aprender, ou melhor, aprender e publicar... um projeto de cada vez. 
 Um passo de cada vez...
 
 ---
