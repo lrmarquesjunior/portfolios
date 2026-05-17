@@ -1,0 +1,163 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "block-001",
+  "Metadata": {
+    "entryPointPosition": { "x": 40, "y": 40 },
+    "ActionMetadata": {
+      "block-001": { "position": { "x": 200, "y": 40 } },
+      "block-002": { "position": { "x": 460, "y": 40 } },
+      "block-003": { "position": { "x": 720, "y": 40 } },
+      "block-004": { "position": { "x": 980, "y": 40 } },
+      "block-005": { "position": { "x": 1240, "y": 40 } },
+      "block-006": { "position": { "x": 1500, "y": 40 } },
+      "block-007": { "position": { "x": 1500, "y": 240 } },
+      "block-008": { "position": { "x": 1240, "y": 240 } },
+      "block-009": { "position": { "x": 980, "y": 240 } }
+    },
+    "name": "04-connect-lambda-dynamodb",
+    "description": "Fluxo de consulta de chamados via chat - Lambda + DynamoDB"
+  },
+  "Actions": [
+    {
+      "Identifier": "block-001",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Olá! Bem-vindo ao suporte. Em que posso ajudar você hoje?"
+      },
+      "Transitions": {
+        "NextAction": "block-002",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-002",
+      "Type": "GetParticipantInput",
+      "Parameters": {
+        "Text": "Por favor, digite o número do seu chamado para que eu possa consultar o status.",
+        "InputTimeLimitSeconds": "60",
+        "StoreDTMFInput": false,
+        "InputType": "Text"
+      },
+      "Transitions": {
+        "NextAction": "block-003",
+        "Conditions": [],
+        "Errors": [
+          { "NextAction": "block-008", "ErrorType": "InputTimeLimitExceeded" },
+          { "NextAction": "block-008", "ErrorType": "NoMatchingCondition" },
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-003",
+      "Type": "UpdateContactAttributes",
+      "Parameters": {
+        "Attributes": [
+          {
+            "Name": "numeroChamado",
+            "Value": "$.StoredCustomerInput"
+          }
+        ]
+      },
+      "Transitions": {
+        "NextAction": "block-004",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-004",
+      "Type": "InvokeLambdaFunction",
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:387290985356:function:04-connect-lambda-dynamodb",
+        "InvocationTimeLimitSeconds": "8",
+        "LambdaInvocationAttributes": {
+          "numeroChamado": "$.Attributes.numeroChamado"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Transitions": {
+        "NextAction": "block-005",
+        "Errors": [
+          { "NextAction": "block-007", "ErrorType": "ServiceQuotaExceededException" },
+          { "NextAction": "block-007", "ErrorType": "Timeout" },
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-005",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "$.External.chamadoDetalhes"
+      },
+      "Transitions": {
+        "NextAction": "block-006",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-006",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Obrigado por entrar em contato. Se precisar de mais ajuda, não hesite em nos contatar. Até logo!"
+      },
+      "Transitions": {
+        "NextAction": "block-terminate",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-007",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Não foi possível consultar o chamado no momento. Nosso sistema está temporariamente indisponível. Por favor, tente novamente em alguns instantes."
+      },
+      "Transitions": {
+        "NextAction": "block-terminate",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-008",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Não recebi o número do chamado dentro do tempo esperado. Por favor, inicie um novo atendimento e informe o número quando solicitado."
+      },
+      "Transitions": {
+        "NextAction": "block-terminate",
+        "Errors": [
+          { "NextAction": "block-009", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "block-009",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Ocorreu um erro inesperado. Por favor, entre em contato com nosso suporte técnico."
+      },
+      "Transitions": {
+        "NextAction": "block-terminate",
+        "Errors": []
+      }
+    },
+    {
+      "Identifier": "block-terminate",
+      "Type": "DisconnectParticipant",
+      "Parameters": {},
+      "Transitions": {}
+    }
+  ]
+}
