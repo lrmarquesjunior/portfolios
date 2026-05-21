@@ -1,0 +1,1 @@
+{"name":"lex-poc","version":"8","description":"Essa vai pegar CODATM e retornar pro flow. Em seguida o flow vai buscar no DYNAMO e retornar os dados do dynamo.","identifier":"AT55H4864X","errorLogSettings":{"enabled":false},"dataPrivacy":{"childDirected":false},"idleSessionTTLInSeconds":300}

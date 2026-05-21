@@ -1,0 +1,153 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "77476641-65b5-44fe-8959-0425f3777153",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "663c5d58-31f1-4e25-94bd-c108ace78e79": {
+        "position": {
+          "x": 911.2,
+          "y": 318.4
+        }
+      },
+      "77476641-65b5-44fe-8959-0425f3777153": {
+        "position": {
+          "x": 141.6,
+          "y": 38.4
+        }
+      },
+      "b6988a14-1a0a-415c-9b11-7c32552194c2": {
+        "position": {
+          "x": 392,
+          "y": 42.4
+        },
+        "parameters": {
+          "QueueId": {
+            "displayName": "Fila Suporte Técnico"
+          }
+        },
+        "queue": {
+          "text": "Fila Suporte Técnico"
+        }
+      },
+      "b73fcbb2-9076-4980-85fb-bee4802c0074": {
+        "position": {
+          "x": 874.4,
+          "y": 69.6
+        }
+      },
+      "ebe4a733-5a62-4df8-943b-ef4f2f9b7813": {
+        "position": {
+          "x": 628,
+          "y": 44.8
+        }
+      },
+      "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf": {
+        "position": {
+          "x": 403.2,
+          "y": 252.8
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "1.1 - Atendimento Suporte Técnico",
+    "description": "",
+    "type": "contactFlow",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "Text": "Não temos nenhum operador logado para tratar de assuntos de Suporte Técnico :("
+      },
+      "Identifier": "663c5d58-31f1-4e25-94bd-c108ace78e79",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "b73fcbb2-9076-4980-85fb-bee4802c0074",
+        "Errors": [
+          {
+            "NextAction": "b73fcbb2-9076-4980-85fb-bee4802c0074",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "Chegou no fluxo Suporte Técnico."
+      },
+      "Identifier": "77476641-65b5-44fe-8959-0425f3777153",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "b6988a14-1a0a-415c-9b11-7c32552194c2",
+        "Errors": [
+          {
+            "NextAction": "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:387290985356:instance/49188406-0f34-4576-a2ba-7d3e182df40e/queue/7888dd19-29ba-45f0-b1b3-cb2647662b43"
+      },
+      "Identifier": "b6988a14-1a0a-415c-9b11-7c32552194c2",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "ebe4a733-5a62-4df8-943b-ef4f2f9b7813",
+        "Errors": [
+          {
+            "NextAction": "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "b73fcbb2-9076-4980-85fb-bee4802c0074",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {},
+      "Identifier": "ebe4a733-5a62-4df8-943b-ef4f2f9b7813",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf",
+        "Errors": [
+          {
+            "NextAction": "663c5d58-31f1-4e25-94bd-c108ace78e79",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Erro ao definir fila de trabalho."
+      },
+      "Identifier": "e1ae46dc-f33f-40d0-8a45-e3d83cffb3bf",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "b73fcbb2-9076-4980-85fb-bee4802c0074",
+        "Errors": [
+          {
+            "NextAction": "b73fcbb2-9076-4980-85fb-bee4802c0074",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}

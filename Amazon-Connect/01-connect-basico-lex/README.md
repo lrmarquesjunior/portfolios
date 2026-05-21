@@ -7,4 +7,5 @@ Implementação de um contact center básico com Amazon Connect integrado ao Ama
 ---
 
 Todos os detalhes eu inclui no .pdf nessa estrutura de pastas "03 - Amazon Connect + Basico + Lex.pdf":
-"portfolios\Amazon-Connect\01-connect-basico-lex\docs\03 - Amazon Connect + Basico + Lex.pdf"
+
+- [03 - Amazon Connect + Basico + Lex.pdf](./docs/03%20-%20Amazon%20Connect%20+%20Basico%20+%20Lex.pdf)
